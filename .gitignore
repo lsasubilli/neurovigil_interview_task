@@ -1,0 +1,17 @@
+# Data files (too large for repo, download separately)
+S*.txt
+Z*.txt
+*.zip
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.Python
+env/
+venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp

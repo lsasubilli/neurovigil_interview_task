@@ -13,18 +13,18 @@ python train.py
 python compare_classifiers.py
 ```
 
-**Outputs from `train.py`:**
-- `roc.png` - ROC curve with optimal threshold
-- `confusion_matrix.png` - Confusion matrix at Youden-J threshold
-- `feature_importance.png` - Feature importance bar chart
+**Outputs from `train.py`:** (saved to `images/` subfolders)
+- `images/roc/roc.png` - ROC curve with optimal threshold
+- `images/confusion_matrices/confusion_matrix.png` - Confusion matrix at Youden-J threshold
+- `images/analysis/feature_importance.png` - Feature importance bar chart
 
-**Outputs from `compare_classifiers.py`:**
-- `classifier_comparison.png` - Comparison heatmap
-- `roc_comparison.png` - Overlaid ROC curves for all classifiers
-- `logistic_regression_roc.png`, `random_forest_roc.png`, `svm_roc.png`, `gradient_boosting_roc.png` - Individual ROC curves
-- `logistic_regression_confusion_matrix.png`, `random_forest_confusion_matrix.png`, `svm_confusion_matrix.png`, `gradient_boosting_confusion_matrix.png` - Individual confusion matrices
-- `certainty_analysis.png` - Confidence distributions
-- `calibration_curves.png` - Probability calibration curves
+**Outputs from `compare_classifiers.py`:** (saved to `images/` subfolders)
+- `images/analysis/classifier_comparison.png` - Comparison heatmap
+- `images/roc/roc_comparison.png` - Overlaid ROC curves for all classifiers
+- `images/roc/*_roc.png` - Individual ROC curves for each classifier
+- `images/confusion_matrices/*_confusion_matrix.png` - Individual confusion matrices
+- `images/analysis/certainty_analysis.png` - Confidence distributions
+- `images/analysis/calibration_curves.png` - Probability calibration curves
 
 ---
 
@@ -112,7 +112,7 @@ The certainty metrics tell you when the model is confident vs. uncertain, which 
 | Gradient Boosting | **1.0000** | 0.9972 | 0.9943 | 1.0000 | 0.9972 | **0.9994** | 0.9971 | **99.9%** | 0.0039 |
 
 **Classifier Comparison Heatmap**:
-![Classifier Comparison](classifier_comparison.png)
+![Classifier Comparison](images/analysis/classifier_comparison.png)
 
 **What I found**:
 - All classifiers perform well on this benchmark (AUC > 0.99)
@@ -124,14 +124,14 @@ The certainty metrics tell you when the model is confident vs. uncertain, which 
 ### ROC Curves
 
 **All Classifiers Comparison**:
-![ROC Comparison](roc_comparison.png)
+![ROC Comparison](images/roc/roc_comparison.png)
 
 The overlaid ROC curves show all four classifiers. Random Forest and Gradient Boosting hit near-perfect AUC (≈1.0), which is expected for this benchmark's high separability. The curves are pretty much on top of each other for the ensemble methods.
 
 ### Confusion Matrix
 
 **Logistic Regression** at optimal Youden's J threshold (0.831):
-![Logistic Regression Confusion Matrix](logistic_regression_confusion_matrix.png)
+![Logistic Regression Confusion Matrix](images/confusion_matrices/logistic_regression_confusion_matrix.png)
 
 - **Confusion Matrix**: `[[348, 2], [9, 343]]`
 - **Sensitivity**: 97.44%

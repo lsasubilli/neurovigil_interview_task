@@ -3,6 +3,7 @@ Multi-Classifier Comparison for EEG Seizure Classification
 Compares Logistic Regression, Random Forest, SVM, and Gradient Boosting
 """
 
+import os
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
@@ -19,6 +20,11 @@ from train import (
     RANDOM_SEED, EPOCHS_PER_FILE, EPOCH_SAMPLES
 )
 import glob
+
+# Create output directories
+os.makedirs('images/roc', exist_ok=True)
+os.makedirs('images/confusion_matrices', exist_ok=True)
+os.makedirs('images/analysis', exist_ok=True)
 
 
 def setup_classifiers():
@@ -283,7 +289,7 @@ def plot_comparison_heatmap(data):
     plt.title('Classifier Comparison Matrix\n(Green=Best Performance, Red=Worst Performance)', 
               fontsize=14, fontweight='bold', pad=20)
     plt.tight_layout()
-    plt.savefig('classifier_comparison.png', dpi=300, bbox_inches='tight')
+    plt.savefig('images/analysis/classifier_comparison.png', dpi=300, bbox_inches='tight')
     print("Comparison heatmap saved to classifier_comparison.png")
 
 
@@ -308,7 +314,7 @@ def plot_roc_comparison(results):
     plt.legend(loc="lower right", fontsize=11)
     plt.grid(alpha=0.3)
     plt.tight_layout()
-    plt.savefig('roc_comparison.png', dpi=300, bbox_inches='tight')
+    plt.savefig('images/roc/roc_comparison.png', dpi=300, bbox_inches='tight')
     print("ROC comparison plot saved to roc_comparison.png")
 
 
@@ -352,7 +358,7 @@ def plot_individual_roc_curves(results):
             plt.grid(alpha=0.3)
             plt.tight_layout()
             
-            filename = r['name'].lower().replace(' ', '_') + '_roc.png'
+            filename = 'images/roc/' + r['name'].lower().replace(' ', '_') + '_roc.png'
             plt.savefig(filename, dpi=300, bbox_inches='tight')
             print(f"Individual ROC curve saved to {filename}")
             plt.close()
@@ -390,7 +396,7 @@ def plot_individual_confusion_matrices(results):
             
             plt.tight_layout()
             
-            filename = r['name'].lower().replace(' ', '_') + '_confusion_matrix.png'
+            filename = 'images/confusion_matrices/' + r['name'].lower().replace(' ', '_') + '_confusion_matrix.png'
             plt.savefig(filename, dpi=300, bbox_inches='tight')
             print(f"Individual confusion matrix saved to {filename}")
             plt.close()
@@ -421,7 +427,7 @@ def plot_certainty_distributions(results):
             ax.grid(alpha=0.3)
     
     plt.tight_layout()
-    plt.savefig('certainty_analysis.png', dpi=300, bbox_inches='tight')
+    plt.savefig('images/analysis/certainty_analysis.png', dpi=300, bbox_inches='tight')
     print("Certainty analysis plot saved to certainty_analysis.png")
 
 
@@ -450,7 +456,7 @@ def plot_calibration_curves(results):
     plt.legend(loc='lower right', fontsize=11)
     plt.grid(alpha=0.3)
     plt.tight_layout()
-    plt.savefig('calibration_curves.png', dpi=300, bbox_inches='tight')
+    plt.savefig('images/analysis/calibration_curves.png', dpi=300, bbox_inches='tight')
     print("Calibration curves plot saved to calibration_curves.png")
 
 

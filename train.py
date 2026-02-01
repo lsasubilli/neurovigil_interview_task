@@ -3,6 +3,7 @@ EEG Seizure Classification using University of Bonn Dataset
 Binary classifier to distinguish seizure vs non-seizure EEG segments
 """
 
+import os
 import numpy as np
 import scipy.signal
 from sklearn.linear_model import LogisticRegression
@@ -10,6 +11,11 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import roc_curve, auc, confusion_matrix
 import matplotlib.pyplot as plt
 import glob
+
+# Create output directories
+os.makedirs('images/roc', exist_ok=True)
+os.makedirs('images/confusion_matrices', exist_ok=True)
+os.makedirs('images/analysis', exist_ok=True)
 
 # Constants
 FS = 173.61  # Sampling rate in Hz
@@ -230,7 +236,7 @@ def main():
     plt.title(f'Confusion Matrix at Optimal Youden-J Threshold (τ = {best_threshold:.3f})',
               fontsize=14, fontweight='bold', pad=20)
     plt.tight_layout()
-    plt.savefig('confusion_matrix.png', dpi=300, bbox_inches='tight')
+    plt.savefig('images/confusion_matrices/confusion_matrix.png', dpi=300, bbox_inches='tight')
     print("\nConfusion matrix saved to confusion_matrix.png")
     
     # Plot ROC curve
@@ -247,7 +253,7 @@ def main():
     plt.legend(loc="lower right", fontsize=11)
     plt.grid(alpha=0.3)
     plt.tight_layout()
-    plt.savefig('roc.png', dpi=300, bbox_inches='tight')
+    plt.savefig('images/roc/roc.png', dpi=300, bbox_inches='tight')
     print("ROC curve saved to roc.png")
     
     # Feature importance analysis
@@ -280,7 +286,7 @@ def main():
     plt.axvline(x=0, color='black', linestyle='-', linewidth=0.5)
     plt.grid(axis='x', alpha=0.3)
     plt.tight_layout()
-    plt.savefig('feature_importance.png', dpi=300, bbox_inches='tight')
+    plt.savefig('images/analysis/feature_importance.png', dpi=300, bbox_inches='tight')
     print("\nFeature importance plot saved to feature_importance.png")
     
     print(f"\nAUC: {roc_auc:.2f}")

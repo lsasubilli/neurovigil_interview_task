@@ -32,6 +32,10 @@ python compare_classifiers.py
 
 I built a binary classifier to distinguish seizure (ictal) from non-seizure (interictal) EEG segments using the University of Bonn dataset. It's a standard benchmark for validating seizure detection algorithms, so I figured it'd be a good way to test different approaches and see what works.
 
+The original dataset is available here:
+
+https://www.upf.edu/web/ntsa/downloads/-/asset_publisher/xvT6E4pczrBw/content/2001-indications-of-nonlinear-deterministic-and-finite-dimensional-structures-in-time-series-of-brain-electrical-activity-dependence-on-recording-regi
+
 **Dataset**:
 - **Set Z**: 100 files from healthy subjects, eyes open (non-seizure baseline)
 - **Set S**: 100 files from epileptic patients during seizure activity (ictal)
